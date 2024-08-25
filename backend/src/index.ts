@@ -10,6 +10,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+type RouteWithIdParams = { id: number };
+
 app
   .route("/restaurants")
   .get(async (req: Request, res: Response) => {
@@ -17,9 +19,25 @@ app
     res.json(restaurants);
   })
   .post(async (req: Request<{}, {}, RestaurantUpdateBody>, res: Response) => {
-    const restaurant = await RestaurantService.createRestaurant(req.body);
+    const restaurant = await RestaurantService.create(req.body);
     res.json(restaurant);
   });
+
+app
+  .route("/restaurants/:id")
+  .delete(async (req: Request<RouteWithIdParams>, res: Response) => {
+    await RestaurantService.delete(req.params.id);
+    res.sendStatus(204);
+  })
+  .put(
+    async (
+      req: Request<RouteWithIdParams, {}, RestaurantUpdateBody>,
+      res: Response
+    ) => {
+      await RestaurantService.update(req.params.id, req.body);
+      res.sendStatus(204);
+    }
+  );
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

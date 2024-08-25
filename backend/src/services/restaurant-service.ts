@@ -6,8 +6,19 @@ class RestaurantService {
     return await Restaurant.findAll();
   }
 
-  async createRestaurant(data: RestaurantUpdateBody): Promise<Restaurant> {
+  async create(data: RestaurantUpdateBody): Promise<Restaurant> {
     return await Restaurant.create(data);
+  }
+
+  async update(id: number, data: RestaurantUpdateBody): Promise<void> {
+    const restaurant = await Restaurant.findByPk(id);
+    restaurant?.set(data);
+    await restaurant?.save();
+  }
+
+  async delete(id: number): Promise<void> {
+    const restaurant = await Restaurant.findByPk(id);
+    await restaurant?.destroy();
   }
 }
 
