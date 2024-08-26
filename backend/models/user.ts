@@ -3,7 +3,7 @@ import sequelizeInstance from "../src/services/sequalize-provider";
 
 export const userRoles = ["Admin", "User", "RestaurantOwner"];
 
-export type Role = (typeof userRoles)[number];
+export type Role = "Admin" | "User" | "RestaurantOwner";
 
 interface UserAttributes {
   id?: number;

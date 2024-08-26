@@ -51,9 +51,11 @@ Opinion.init(
   }
 );
 
-Opinion.hasOne(Restaurant);
-Opinion.hasOne(User);
-User.hasMany(Opinion);
-Restaurant.hasMany(Opinion);
+Restaurant.hasMany(Opinion, {
+  foreignKey: "restaurantId",
+});
+User.hasMany(Opinion, {
+  foreignKey: "userId",
+});
 
 export default Opinion;
