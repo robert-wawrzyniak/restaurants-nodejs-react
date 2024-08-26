@@ -1,3 +1,4 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
 import { OpinionUpdateModel } from "./dto-models/opinion-update";
@@ -12,6 +13,8 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(cors());
 
 type RouteWithIdParams = { id: number };
 interface RouteWithIdAndRestaurantIdParams extends RouteWithIdParams {
