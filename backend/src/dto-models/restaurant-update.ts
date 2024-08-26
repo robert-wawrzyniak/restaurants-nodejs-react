@@ -1,4 +1,4 @@
-export interface RestaurantUpdateBody {
+export interface RestaurantUpdateModel {
   name: string;
   description: string;
 }

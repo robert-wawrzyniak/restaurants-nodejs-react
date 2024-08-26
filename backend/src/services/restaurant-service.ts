@@ -1,16 +1,16 @@
 import Restaurant from "../../models/restaurant";
-import { RestaurantUpdateBody } from "../dto-models/restaurant-update-body";
+import { RestaurantUpdateModel } from "../dto-models/restaurant-update";
 
 class RestaurantService {
   async getAll(): Promise<Restaurant[]> {
     return await Restaurant.findAll();
   }
 
-  async create(data: RestaurantUpdateBody): Promise<Restaurant> {
+  async create(data: RestaurantUpdateModel): Promise<Restaurant> {
     return await Restaurant.create(data);
   }
 
-  async update(id: number, data: RestaurantUpdateBody): Promise<void> {
+  async update(id: number, data: RestaurantUpdateModel): Promise<void> {
     const restaurant = await Restaurant.findByPk(id);
     restaurant?.set(data);
     await restaurant?.save();
