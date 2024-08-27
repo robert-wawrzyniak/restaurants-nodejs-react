@@ -17,10 +17,11 @@ function App() {
         />
         <p>Restaurants rating site</p>
       </header>
-
-      <Routes>
-        <Route path="/" element={<RestaurantsOverview />} />
-      </Routes>
+      <div className="page-body">
+        <Routes>
+          <Route path="/" element={<RestaurantsOverview />} />
+        </Routes>
+      </div>
     </div>
   );
 }

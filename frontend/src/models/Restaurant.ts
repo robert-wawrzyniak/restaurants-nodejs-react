@@ -1,5 +1,8 @@
-export interface Restaurant {
-  id: number;
+export interface RestaurantRequest {
   name: string;
   description: string;
+}
+
+export interface Restaurant extends RestaurantRequest {
+  id: number;
 }

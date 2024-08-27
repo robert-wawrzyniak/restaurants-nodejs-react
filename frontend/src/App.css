@@ -13,6 +13,10 @@
   }
 }
 
+.page-body {
+  margin: 30px 60px;
+}
+
 .App-header {
   background-color: #282c34;
   display: flex;
