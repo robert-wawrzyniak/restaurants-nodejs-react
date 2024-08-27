@@ -93,7 +93,7 @@ export const RestaurantsOverview = () => {
     setRestaurants(restaurants);
   };
 
-  const handleAddingRestaurantDialogClosed = (restaurant: Restaurant) => {
+  const handleAddingRestaurantAdded = (restaurant: Restaurant) => {
     setRestaurants((prev) => [...prev, restaurant]);
   };
 
@@ -104,7 +104,7 @@ export const RestaurantsOverview = () => {
   return (
     <>
       <AddingNewRestaurantDialog
-        restaurantAdded={handleAddingRestaurantDialogClosed}
+        restaurantAdded={handleAddingRestaurantAdded}
       />
       <div
         style={{
