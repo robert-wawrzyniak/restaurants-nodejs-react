@@ -1,7 +1,7 @@
-import Opinion from "../../models/opinion";
-import User from "../../models/user";
 import { OpinionUpdateModel } from "../dto-models/opinion-update";
 import { UserUpdateModel } from "../dto-models/user-update";
+import Opinion from "../models/opinion";
+import User from "../models/user";
 
 class UserService {
   async getAll(): Promise<User[]> {

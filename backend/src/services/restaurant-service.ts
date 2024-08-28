@@ -1,5 +1,5 @@
-import Restaurant from "../../models/restaurant";
 import { RestaurantUpdateModel } from "../dto-models/restaurant-update";
+import Restaurant from "../models/restaurant";
 
 class RestaurantService {
   async getAll(): Promise<Restaurant[]> {

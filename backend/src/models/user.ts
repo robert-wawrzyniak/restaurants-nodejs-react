@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import sequelizeInstance from "../src/services/sequalize-provider";
+import sequelizeInstance from "../services/sequalize-provider";
 
 export const userRoles = ["Admin", "User", "RestaurantOwner"];
 
