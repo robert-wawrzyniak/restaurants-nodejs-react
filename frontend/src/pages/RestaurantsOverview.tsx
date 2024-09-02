@@ -13,6 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
 import { Restaurant } from "../models/Restaurant";
 import { Api } from "../services/api";
+import { RestaurantPopup } from "../components/restaurant-popup";
 
 const api = new Api();
 
@@ -58,17 +59,30 @@ const AddingNewRestaurantDialog = ({
       >
         <DialogTitle>Adding new restaurant</DialogTitle>
         <DialogContent>
-          <TextField
-            value={name}
-            fullWidth
-            onChange={(e) => setName(e.target.value)}
-          />
-          <TextField
-            value={description}
-            multiline
-            fullWidth
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+              paddingTop: "10px",
+              width: "400px",
+            }}
+          >
+            <TextField
+              label="Name"
+              value={name}
+              fullWidth
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+              label="Description"
+              value={description}
+              multiline
+              minRows={3}
+              fullWidth
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
@@ -97,6 +111,16 @@ export const RestaurantsOverview = () => {
     setRestaurants((prev) => [...prev, restaurant]);
   };
 
+  const handleEditingRestaurant = (restaurant: Restaurant) => {
+    setRestaurants((prev) =>
+      prev.map((r) => (r.id === restaurant.id ? restaurant : r))
+    );
+  };
+
+  const handleRestaurantRemoved = (restaurant: Restaurant) => {
+    setRestaurants((prev) => prev.filter((r) => r.id !== restaurant.id));
+  };
+
   useEffect(() => {
     loadRestaurants();
   }, []);
@@ -118,7 +142,21 @@ export const RestaurantsOverview = () => {
               aria-controls={`panel${i}-content`}
               id={`panel${i}-header`}
             >
-              {r.name}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "10px",
+                  alignItems: "center",
+                }}
+              >
+                {r.name}
+                <RestaurantPopup
+                  restaurant={r}
+                  restaurantEdited={handleEditingRestaurant}
+                  restaurantRemoved={handleRestaurantRemoved}
+                />
+              </div>
             </AccordionSummary>
             <AccordionDetails>{r.description}</AccordionDetails>
           </Accordion>

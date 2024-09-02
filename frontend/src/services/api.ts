@@ -18,4 +18,18 @@ export class Api {
 
     return response.data;
   }
+
+  async updateRestaurant(id: number, data: RestaurantRequest): Promise<void> {
+    const url = `${apiUrl}/restaurants/${id}`;
+    const response = await axios.put(url, data);
+
+    return response.data;
+  }
+
+  async deleteRestaurant(id: number): Promise<void> {
+    const url = `${apiUrl}/restaurants/${id}`;
+    const response = await axios.delete(url);
+
+    return response.data;
+  }
 }

@@ -3,9 +3,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { RestaurantsOverview } from "./pages/RestaurantsOverview";
+import { SettingsMenu } from "./components/settings-menu";
 
 function App() {
   const navigate = useNavigate();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,6 +18,8 @@ function App() {
           onClick={() => navigate("/")}
         />
         <p>Restaurants rating site</p>
+
+        <SettingsMenu />
       </header>
       <div className="page-body">
         <Routes>
